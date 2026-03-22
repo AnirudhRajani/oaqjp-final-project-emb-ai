@@ -8,6 +8,9 @@ def emotion_submit():
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
 
+    if response['dominant_emotion'] == None:
+        return "Blank inputs are invalid."
+
     return_str = 'For the given statement, the system response is '
     
     return_str += f"\'anger\': {response['anger']}, "
